@@ -1,3 +1,13 @@
+body {
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8TXiRgAuXIaRFXRvi7O9JRdkC2KfyTPI1aRIAIgAq4ils7Ruf');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 #container {
   margin: 25px;
+}
+.topic {
+  margin: 10px;
+  border-radius: 25px;
+  background-color: white;
 }
