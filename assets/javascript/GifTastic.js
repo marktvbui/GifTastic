@@ -1,6 +1,5 @@
 $(document).ready(function() {
-  var topics = ["game of thrones", "walking dead", "disney", "pixar", "rurouni kenshin", "denver broncos", "golden state warriors", "better call saul", "breaking bad"];
-  // var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + topics + "&api_key=dc6zaTOxFJmzC"
+  var topics = ["pug","game of thrones", "walking dead", "house of cards","disney", "pixar", "rurouni kenshin", "denver broncos", "golden state warriors", "better call saul", "breaking bad", "fresh off the boat", "jet li", "jackie chan"];
 
   function displayTopicInfo() {
     var topic = $(this).attr("data-name");
@@ -9,24 +8,62 @@ $(document).ready(function() {
       url: queryURL,
       method: "GET"
     }).done(function(response) {
-      console.log('got data from api ' + response);
+      // console.log('got data from api ' + response);
       for (i = 0; i < 10; i++){
         // converting object into json string
         $('#topic-view').prepend(JSON.stringify(response));
         var topicDiv = $('<div class="topicData">');
-        var gifURL = response.data[i].images.fixed_height.url;
-        var image = $('<img>').attr('src', gifURL);
+        topicDiv.addClass('topicCount' + i);
+        // console.log(topicDiv);
+        var gifStill = response.data[i].images.fixed_height_still.url;
+        // console.log('still gif ' + gifStill);
+        var gifAnimated = response.data[i].images.fixed_height.url;
+        // console.log('animated gif ' + gifAnimated);
+        var image = $('<img>').attr('src', gifStill).on('click', function(){
+        image = $('<img>').replaceWith('src', gifAnimated);
+        });
         topicDiv.append(image);
         var rating = response.data[i].rating;
-        console.log(response.data[i].rating);
+        // console.log(response.data[i].rating);
         var pOne = $('<p>').text('Rating: ' + rating);
         topicDiv.append(pOne);
-
-        $('#topics-view').prepend(topicDiv);
-
+        // topicDiv.addClass('topicCounter' + counter);
+        // console.log(topicDiv);
+        $('#topics-view').append(topicDiv);
       }
+      // $('.topicData').on('click', function(){
+      //     image = $('<img>').attr('src', gifAnimated);
+      //     topicDiv.append(image);
+      //     console.log('this image was clicked');
+      //   })
     });
   }
+  // $('.topicData').each(function(i){
+  //   $(this).addClass('topicCounter' + i);
+  //   console.log('.topicCounter');
+  // });
+  // function clickImage(){
+  //    $('.topicData').on('click', function(){
+  //       image = $('<img>').attr('src', gifAnimated);
+  //       topicDiv.replaceWith(image);
+  //       console.log('this image was clicked');
+  //     })
+  // }
+  // $('#mtl').click(function(){
+  //   $('#picture').attr('src', 'http://profile.ak.fbcdn.net/hprofile-ak-ash3/41811_170099283015889_1174445894_q.jpg');
+  //   });
+  // function clickImage(){
+  //   $('.topicData').each(function(image){
+  //     console.log('this image was clicked!!!');
+  //     console.log(gifStill);
+  //     console.log(gifAnimated);
+  //     $(image).click(function(){
+  //       $(this).attr('src', src.replace(gifStill, gifAnimated));
+  //     }, function(){
+  //       $(this).attr('src', src);
+  //     });
+  //   });
+  // };
     // Function for displaying topic data
     function renderButtons() {
 
@@ -58,7 +95,10 @@ $(document).ready(function() {
       renderButtons();
 
     });
+  // Adding click event listeners to all elements with a class of "movie"
   $(document).on("click", ".topic", displayTopicInfo);
+  // $(document).on('click', '.topicData', clickImage);
+  // Calling the renderButtons function to display the intial buttons
   renderButtons();
 
 })
