@@ -19,29 +19,35 @@ $(document).ready(function() {
         // console.log('still gif ' + gifStill);
         var gifAnimated = response.data[i].images.fixed_height.url;
         // console.log('animated gif ' + gifAnimated);
-        var image = $('<img>').attr('src', gifStill).on('click', function(){
-        image = $('<img>').replaceWith('src', gifAnimated);
-        });
+        var image = $('<img>').attr('src', gifStill);
+        // $('.topicData').each(function(index) {
+        //   $(this).on('click', function(){
+        //     image = $('<img'>).attr('src', gifAnimated);
+        //   });
+        // });
         topicDiv.append(image);
         var rating = response.data[i].rating;
         // console.log(response.data[i].rating);
         var pOne = $('<p>').text('Rating: ' + rating);
         topicDiv.append(pOne);
-        // topicDiv.addClass('topicCounter' + counter);
-        // console.log(topicDiv);
-        $('#topics-view').append(topicDiv);
+        $('#topics-view').prepend(topicDiv);
       }
-      // $('.topicData').on('click', function(){
-      //     image = $('<img>').attr('src', gifAnimated);
-      //     topicDiv.append(image);
-      //     console.log('this image was clicked');
-      //   })
+      // $('.topicData').each(function(index) {
+      //   for (i = 0; i < 10; i++) {
+      //     $(this).on('click', function(){
+      //       image = $('<img>').attr('src', gifAnimated);
+      //     });
+      //   };
+      // });
     });
+     $('.topicData').each(function(index) {
+        for (i = 0; i < 10; i++) {
+          $(this).on('click', function(){
+            image = $('<img>').attr('src', gifAnimated);
+          });
+        };
+      });
   }
-  // $('.topicData').each(function(i){
-  //   $(this).addClass('topicCounter' + i);
-  //   console.log('.topicCounter');
-  // });
   // function clickImage(){
   //    $('.topicData').on('click', function(){
   //       image = $('<img>').attr('src', gifAnimated);
@@ -49,14 +55,8 @@ $(document).ready(function() {
   //       console.log('this image was clicked');
   //     })
   // }
-  // $('#mtl').click(function(){
-  //   $('#picture').attr('src', 'http://profile.ak.fbcdn.net/hprofile-ak-ash3/41811_170099283015889_1174445894_q.jpg');
-  //   });
   // function clickImage(){
   //   $('.topicData').each(function(image){
-  //     console.log('this image was clicked!!!');
-  //     console.log(gifStill);
-  //     console.log(gifAnimated);
   //     $(image).click(function(){
   //       $(this).attr('src', src.replace(gifStill, gifAnimated));
   //     }, function(){
