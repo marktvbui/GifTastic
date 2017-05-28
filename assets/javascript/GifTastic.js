@@ -12,14 +12,22 @@ $(document).ready(function() {
       for (i = 0; i < 10; i++){
         // converting object into json string
         $('#topic-view').prepend(JSON.stringify(response));
-        var topicDiv = $('<div class="topicData">');
-        topicDiv.addClass('topicCount' + i);
+        var topicDiv = $('<div id="topicData">');
+        // topicDiv.addClass('topicCount' + i);
         // console.log(topicDiv);
         var gifStill = response.data[i].images.fixed_height_still.url;
         // console.log('still gif ' + gifStill);
         var gifAnimated = response.data[i].images.fixed_height.url;
         // console.log('animated gif ' + gifAnimated);
         var image = $('<img>').attr('src', gifStill);
+        var clickImage = $('<img>').on('click', function (){
+          if ($(this).data('data-block', true)){
+            image = $('<img>').attr('src', gifAnimated);
+          }
+          else {
+            image = $('<img>').attr('src', gifStill);
+          }
+        });
         // $('.topicData').each(function(index) {
         //   $(this).on('click', function(){
         //     image = $('<img'>).attr('src', gifAnimated);
@@ -29,8 +37,11 @@ $(document).ready(function() {
         var rating = response.data[i].rating;
         // console.log(response.data[i].rating);
         var pOne = $('<p>').text('Rating: ' + rating);
-        topicDiv.append(pOne);
         $('#topics-view').prepend(topicDiv);
+        var changeGif = document.getElementById('topicData');
+        changeGif.addEventListener('click', function() {
+          image = $('<img>').attr('src', gifAnimated);
+        });
       }
       // $('.topicData').each(function(index) {
       //   for (i = 0; i < 10; i++) {
@@ -40,13 +51,6 @@ $(document).ready(function() {
       //   };
       // });
     });
-     $('.topicData').each(function(index) {
-        for (i = 0; i < 10; i++) {
-          $(this).on('click', function(){
-            image = $('<img>').attr('src', gifAnimated);
-          });
-        };
-      });
   }
   // function clickImage(){
   //    $('.topicData').on('click', function(){
