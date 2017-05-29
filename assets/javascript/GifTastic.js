@@ -19,8 +19,12 @@ $(document).ready(function() {
         // console.log('still gif ' + gifStill);
         var gifAnimated = response.data[i].images.fixed_height.url;
         // console.log('animated gif ' + gifAnimated);
-        var image = $('<img>').attr('src', gifStill);
-        var clickImage = $('<img>')
+        var image = $('<img>').attr('src', gifStill).on('click', function(){
+          // var gifAnimated = response.data[i].images.fixed_height.url;
+          image = $('<img>').attr('src', gifAnimated);
+          topicDiv.replaceWith(image);
+        });
+        // var clickImage = $('<img>')
         // $('.topicData').each(function(index) {
         //   $(this).on('click', function(){
         //     image = $('<img'>).attr('src', gifAnimated);
