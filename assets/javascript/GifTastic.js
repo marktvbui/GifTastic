@@ -19,14 +19,8 @@ $(document).ready(function() {
         // console.log('still gif ' + gifStill);
         var gifAnimated = response.data[i].images.fixed_height.url;
         // console.log('animated gif ' + gifAnimated);
-        var image = $('<img>').attr('src', gifStill).on('click', function (){
-          if ($(this).data('data-block', true)){
-            image = $('<img>').attr('src', gifAnimated);
-          }
-          else {
-            image = $('<img>').attr('src', gifStill);
-          }
-        });
+        var image = $('<img>').attr('src', gifStill);
+        var clickImage = $('<img>')
         // $('.topicData').each(function(index) {
         //   $(this).on('click', function(){
         //     image = $('<img'>).attr('src', gifAnimated);
@@ -35,10 +29,11 @@ $(document).ready(function() {
         topicDiv.append(image);
         var rating = response.data[i].rating;
         // console.log(response.data[i].rating);
-        var pOne = $('<p>').text('Rating: ' + rating);
+        var pRating = $('<p>').text('Rating: ' + rating);
+        topicDiv.append(pRating);
         $('#topics-view').prepend(topicDiv);
         // var changeGif = document.getElementById('topicData');
-        // changeGif.addEventListener('click', function() {
+        // changeGif.on('click', function() {
         //   image = $('<img>').attr('src', gifAnimated);
         // });
       }
