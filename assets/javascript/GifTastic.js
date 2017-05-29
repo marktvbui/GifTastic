@@ -19,8 +19,7 @@ $(document).ready(function() {
         // console.log('still gif ' + gifStill);
         var gifAnimated = response.data[i].images.fixed_height.url;
         // console.log('animated gif ' + gifAnimated);
-        var image = $('<img>').attr('src', gifStill);
-        var clickImage = $('<img>').on('click', function (){
+        var image = $('<img>').attr('src', gifStill).on('click', function (){
           if ($(this).data('data-block', true)){
             image = $('<img>').attr('src', gifAnimated);
           }
@@ -38,10 +37,10 @@ $(document).ready(function() {
         // console.log(response.data[i].rating);
         var pOne = $('<p>').text('Rating: ' + rating);
         $('#topics-view').prepend(topicDiv);
-        var changeGif = document.getElementById('topicData');
-        changeGif.addEventListener('click', function() {
-          image = $('<img>').attr('src', gifAnimated);
-        });
+        // var changeGif = document.getElementById('topicData');
+        // changeGif.addEventListener('click', function() {
+        //   image = $('<img>').attr('src', gifAnimated);
+        // });
       }
       // $('.topicData').each(function(index) {
       //   for (i = 0; i < 10; i++) {
