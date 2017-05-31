@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  var topics = ["pug","game of thrones", "walking dead", "house of cards","disney", "pixar", "rurouni kenshin", "denver broncos", "golden state warriors", "better call saul", "breaking bad", "fresh off the boat", "jet li", "jackie chan"];
+  var topics = ["pug","game of thrones", "walking dead", "house of cards","disney", "pixar", "rurouni kenshin", "denver broncos", "golden state warriors", "better call saul", "breaking bad", "fresh off the boat", "food", "cupcake", "cake", "ice cream", "donut", "chocolate"];
 
   function displayTopicInfo() {
     var topic = $(this).attr("data-name");
@@ -15,65 +15,35 @@ $(document).ready(function() {
         var topicDiv = $('<div id="topicData">');
         // topicDiv.addClass('topicCount' + i);
         // console.log(topicDiv);
-        var gifStill = response.data[i].images.fixed_height_still.url;
+        var gifStill = response.data[i].images.original_still.url;
         // console.log('still gif ' + gifStill);
-        var gifAnimated = response.data[i].images.fixed_height.url;
+        var gifAnimated = response.data[i].images.original.url;
         // console.log('animated gif ' + gifAnimated);
-        var image = $('<img>').attr('src', gifStill).on('click', function(){
-          // var gifAnimated = response.data[i].images.fixed_height.url;
-          image = $('<img>').attr('src', gifAnimated);
-          topicDiv.replaceWith(image);
-        });
-        // var clickImage = $('<img>')
-        // $('.topicData').each(function(index) {
-        //   $(this).on('click', function(){
-        //     image = $('<img'>).attr('src', gifAnimated);
-        //   });
-        // });
-        topicDiv.append(image);
+        var imageStill = $('<img>')
+          .attr('src', gifStill)
+          .addClass('still')
+          .attr('data-still', gifStill)
+          .attr('data-animated', gifAnimated);
+        topicDiv.append(imageStill);
         var rating = response.data[i].rating;
         // console.log(response.data[i].rating);
         var pRating = $('<p>').text('Rating: ' + rating);
         topicDiv.append(pRating);
         $('#topics-view').prepend(topicDiv);
-        // var changeGif = document.getElementById('topicData');
-        // changeGif.on('click', function() {
-        //   image = $('<img>').attr('src', gifAnimated);
-        // });
       }
-      // $('.topicData').each(function(index) {
-      //   for (i = 0; i < 10; i++) {
-      //     $(this).on('click', function(){
-      //       image = $('<img>').attr('src', gifAnimated);
-      //     });
-      //   };
-      // });
+
     });
   }
-  // function clickImage(){
-  //    $('.topicData').on('click', function(){
-  //       image = $('<img>').attr('src', gifAnimated);
-  //       topicDiv.replaceWith(image);
-  //       console.log('this image was clicked');
-  //     })
-  // }
-  // function clickImage(){
-  //   $('.topicData').each(function(image){
-  //     $(image).click(function(){
-  //       $(this).attr('src', src.replace(gifStill, gifAnimated));
-  //     }, function(){
-  //       $(this).attr('src', src);
-  //     });
-  //   });
-  // };
+
+
     // Function for displaying topic data
     function renderButtons() {
 
-      // Deletes the topics prior to adding new movies
+      // Deletes the topics prior to adding new topics
       // (this is necessary otherwise you will have repeat buttons)
       $("#buttons-view").empty();
 
-      // Loops through the array of movies
+      // Loops through the array of topics
       for (var i = 0; i < topics.length; i++) {
 
         // Then dynamicaly generates buttons for each topic in the array
@@ -97,10 +67,24 @@ $(document).ready(function() {
       renderButtons();
 
     });
-  // Adding click event listeners to all elements with a class of "movie"
+    // event handlers
+    $('#topics-view').on('click', 'img', function(event){
+      var state = $(this).attr('class');
+      // console.log(state);
+      if (state === 'still'){
+        var gifAnimated = $(this).attr('data-animated');
+        $(this).attr('src', gifAnimated);
+        $(this).removeClass('still');
+      } else {
+        var gifStill = $(this).attr('data-still');
+        $(this).attr('src', gifStill);
+        $(this).addClass('still');
+      }
+    })
+  // Adding click event listeners to all elements with a class of "topic"
   $(document).on("click", ".topic", displayTopicInfo);
-  // $(document).on('click', '.topicData', clickImage);
   // Calling the renderButtons function to display the intial buttons
   renderButtons();
 
-})
+});
+
