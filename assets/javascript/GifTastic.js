@@ -13,7 +13,6 @@ $(document).ready(function() {
         // converting object into json string
         $('#topic-view').prepend(JSON.stringify(response));
         var topicDiv = $('<div id="topicData">');
-        // topicDiv.addClass('topicCount' + i);
         // console.log(topicDiv);
         var gifStill = response.data[i].images.original_still.url;
         // console.log('still gif ' + gifStill);
@@ -67,16 +66,21 @@ $(document).ready(function() {
       renderButtons();
 
     });
-    // event handlers
+    // event handlers, line 70 will place an on click on every topics-view div, but looking for an img tag, making those clickable
     $('#topics-view').on('click', 'img', function(event){
+      //setting a var state to the class of the img, so we can use it as a base for comparison in our if statement
       var state = $(this).attr('class');
       // console.log(state);
       if (state === 'still'){
+        //setting gifAnimated to what is stored inside data-animated
         var gifAnimated = $(this).attr('data-animated');
+        //attaching gifAnimated url (from data-animated) to replace the still image, if the still state is on. (replacing still for animated gif)
         $(this).attr('src', gifAnimated);
         $(this).removeClass('still');
       } else {
+        //declaring gifStill to the url saved in data-still
         var gifStill = $(this).attr('data-still');
+        //this swaps out the gitAnimated for the gifStill, allowing us to "pause" the gif animation(replacing the animated for still)
         $(this).attr('src', gifStill);
         $(this).addClass('still');
       }
