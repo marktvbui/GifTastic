@@ -32,7 +32,6 @@ $(document).ready(function() {
         topicDiv.append(pRating);
         $('#topics-view').prepend(topicDiv);
       }
-
     });
   }
 
@@ -66,7 +65,6 @@ $(document).ready(function() {
 
       // Calling renderButtons which handles the processing of our topics array
       renderButtons();
-
     });
     // event handlers, line 70 will place an on click on every topics-view div, but looking for an img tag, making those clickable
     $('#topics-view').on('click', 'img', function(event){
