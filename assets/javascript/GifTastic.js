@@ -1,15 +1,17 @@
 $(document).ready(function() {
   var topics = ["pug","game of thrones", "walking dead", "house of cards","disney", "pixar", "rurouni kenshin", "denver broncos", "golden state warriors", "better call saul", "breaking bad", "fresh off the boat", "food", "cupcake", "cake", "ice cream", "donut", "chocolate"];
-
   function displayTopicInfo() {
     var topic = $(this).attr("data-name");
-    var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=dc6zaTOxFJmzC";
+    var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + topic + "&limit=100&api_key=dc6zaTOxFJmzC";
+    // var randomNumber = Math.floor(Math.random() * 90);
     $.ajax({
       url: queryURL,
       method: "GET"
     }).done(function(response) {
       // console.log('got data from api ' + response);
-      for (i = 0; i < 10; i++){
+      // setting a random number so i can get different gifs each time i run the loop, and not always be stuck seeing the same 10 gifs over and over
+      var randomNumber = Math.floor(Math.random() * 90);
+      for (i = randomNumber; i < randomNumber + 10; i++){
         // converting object into json string
         $('#topic-view').prepend(JSON.stringify(response));
         var topicDiv = $('<div id="topicData">');
