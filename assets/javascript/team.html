@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Search</title>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>New York Times Search</h1>
+  </div><br>
+  <div class="addSearch">
+    <h4>Search Parameters</h4>
+    <form id="search-form">
+      <div class="row">
+        <label for="trainName">Search Term</label><br>
+        <input class="input" type="text" name="searchTerm">
+      </div><br>
+      <div class="row">
+        <label for="destination">Number of Records to Retrieve</label><br>
+        <input class="input" type="text" id="records">
+      </div><br>
+      <div class="row">
+        <label for="startYear">Start Year (Optional)</label><br>
+        <input class="input" type="text" id="startYear">
+      </div><br>
+      <div class="row">
+        <label for="endYear">End Year (optional)</label><br>
+        <input class="input" type="text" id="endYear">
+      </div>
+      <br>
+      <input id="subTrain" type="submit" value="Submit">
+      <input id="CResult" type="result" value="Clear Result">
+    </form>
+  </div>
+  <div id="results">
+    <div id="topArticles">
+      <h4>Top Articles</h4>
+    </div>
+  </div>
+ </div>
+  <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+  <script type="text/javascript">
+  function params(){
+    var searchTerm = document.getElementById('searchTerm').value;
+    console.log(searchTerm);
+    var records = document.getElementById('records').value;
+    console.log(records);
+    var startYear = document.getElementById('startYear').value;
+    console.log(startYear);
+    var endYear = document.getElementById('endYear').value;
+    console.log(endYear);
+  }
+    var queryURL = "http://api.nytimes.com/svc/search/v2/articlesearch.json?q=warriors&api-key=4b070af15fbc4aa6b2636f690b6b6ffb";
+
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+      }).done(function(response) {
+        for (var i = 1; i < 10; i++){
+          var headline = response.response.docs[i].headline.main;
+          var source = response.response.docs[i].source;
+          var pubDate = response.response.docs[i].pub_date;
+          var url = response.response.docs[i].web_url;
+          $("#topArticles").append(headline);
+          $("#topArticles").append(source);
+          $('#topArticles').append(pubDate);
+          $('#topArticles').append(url);
+        }
+
+
+      });
+    </script>
+</body>
+</html>
