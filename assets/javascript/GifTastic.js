@@ -2,7 +2,7 @@ $(document).ready(function() {
   var topics = ["pug","game of thrones", "walking dead", "house of cards","disney", "pixar", "rurouni kenshin", "denver broncos", "golden state warriors", "better call saul", "breaking bad", "fresh off the boat", "food", "cupcake", "cake", "ice cream", "donut", "chocolate"];
   function displayTopicInfo() {
     var topic = $(this).attr("data-name");
-    var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + topic + "&limit=100&api_key=dc6zaTOxFJmzC";
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&limit=100&api_key=dc6zaTOxFJmzC";
     // var randomNumber = Math.floor(Math.random() * 90);
     $.ajax({
       url: queryURL,
@@ -16,9 +16,9 @@ $(document).ready(function() {
         $('#topic-view').prepend(JSON.stringify(response));
         var topicDiv = $('<div id="topicData">');
         // console.log(topicDiv);
-        var gifStill = response.data[i].images.original_still.url;
+        var gifStill = response.data[i].images.fixed_height_still.url;
         // console.log('still gif ' + gifStill);
-        var gifAnimated = response.data[i].images.original.url;
+        var gifAnimated = response.data[i].images.fixed_height.url;
         // console.log('animated gif ' + gifAnimated);
         var imageStill = $('<img>')
           .attr('src', gifStill)
