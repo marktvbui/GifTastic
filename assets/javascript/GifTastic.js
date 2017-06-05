@@ -59,6 +59,8 @@ $(document).ready(function() {
       event.preventDefault();
       // This line of code will grab the input from the textbox
       var topic = $("#topic-input").val().trim();
+      localStorage.clear();
+      localStorage.setItem("localTopic",topic);
 
       // The topic from the textbox is then added to our array
       topics.push(topic);
