@@ -64,9 +64,11 @@ $(document).ready(function() {
 
       // The topic from the textbox is then added to our array
       topics.push(topic);
+      $.unique(topics);
 
       // Calling renderButtons which handles the processing of our topics array
       renderButtons();
+      $('#topic-input').val('');
     });
     // event handlers, line 70 will place an on click on every topics-view div, but looking for an img tag, making those clickable
     $('#topics-view').on('click', 'img', function(event){
