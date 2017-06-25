@@ -59,6 +59,7 @@ $(document).ready(function() {
       event.preventDefault();
       // This line of code will grab the input from the textbox
       var topic = $("#topic-input").val().trim();
+      topic = topic.toLowerCase();
       localStorage.clear();
       localStorage.setItem("localTopic",topic);
 
