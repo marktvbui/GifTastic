@@ -1,7 +1,5 @@
 body {
-  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8TXiRgAuXIaRFXRvi7O9JRdkC2KfyTPI1aRIAIgAq4ils7Ruf');
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-image: url('../images/random_grey_variations.png');
 }
 #container {
   margin: 25px;
@@ -10,4 +8,30 @@ body {
   margin: 10px;
   border-radius: 25px;
   background-color: white;
+}
+.jumbotron {
+  margin-top: 25px;
+  text-align: center;
+  background-color: #AFEEEE !important;
+}
+
+label {
+  color: #AFEEEE;
+}
+.topic {
+  background-color: #AFEEEE;
+}
+#add-topic {
+  background-color: #AFEEEE;
+}
+#topic-input {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+p {
+  color: #AFEEEE;
+}
+#topicData {
+  float: left;
+  margin: 15px;
 }

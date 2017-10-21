@@ -11,7 +11,7 @@ $(document).ready(function() {
       // console.log('got data from api ' + response);
       // setting a random number so i can get different gifs each time i run the loop, and not always be stuck seeing the same 10 gifs over and over
       var randomNumber = Math.floor(Math.random() * 90);
-      for (i = randomNumber; i < randomNumber + 10; i++){
+      for (i = randomNumber; i < randomNumber + 20; i++){
         // converting object into json string
         $('#topic-view').prepend(JSON.stringify(response));
         var topicDiv = $('<div id="topicData">');

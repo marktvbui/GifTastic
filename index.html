@@ -13,21 +13,31 @@
         <script src="assets/javascript/GifTastic.js"></script>
 </head>
 <body>
-  <div id="container">
-   <!-- Rendered buttons will get dumped Here  -->
-    <div id="buttons-view"></div>
+  <div class="container">
+    <div class="jumbotron">
+      <h1>Gifs Gifs Gifs!!!</h1>
+      <h6>(sorry no R or X rated gifs here)</h6>
+    </div>
+    <div class="row">
+     <!-- Rendered buttons will get dumped Here  -->
+      <div id="buttons-view">
+        <h2>Sample topics here:</h2>
+      </div>
+      <center>
+        <div class="container">
+          <form id="topic-form">
+            <input type="text" id="topic-input" placeholder="Add New Topic Here"><br>
 
-    <center>
-      <form id="topic-form">
-        <label for="topic-input">Add a Topic</label>
-        <input type="text" id="topic-input"><br>
-
-        <!-- Button triggers new movie to be added -->
-        <input id="add-topic" type="submit" value="Add a Topic">
-      </form>
-    </center>
-<!-- topics will get dumped here -->
-    <div id='topics-view'></div>
+            <!-- Button triggers new movie to be added -->
+            <input id="add-topic" type="submit" value="Add a Topic">
+          </form>
+        </div>
+      </center>
+  <!-- topics will get dumped here -->
+      <div class="container">
+        <div id='topics-view'></div>
+      </div>
+    </div>
   </div>
 </body>
 </html>
